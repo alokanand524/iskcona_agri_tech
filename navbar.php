@@ -1,8 +1,8 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-scrolled">
     <div class="container">
         <a class="navbar-brand fw-bold text-success" href="#">
-            <!-- <i class="fas fa-leaf me-2"></i> --> iskcona Agritech
+            <img src="src/iskcona_logo.png" alt="ISKCONA AGRI TECH Logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -27,6 +27,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
+                <!-- Future dropdown for language switcher -->
+                <!-- 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Language</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li><a class="dropdown-item" href="#">हिंदी</a></li>
+                    </ul>
+                </li>
+                -->
             </ul>
         </div>
     </div>

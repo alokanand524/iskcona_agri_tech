@@ -21,25 +21,52 @@ body {
 }
 
 /* Navigation */
-.navbar {
+/* .navbar {
     transition: all 0.3s ease;
-    padding: 1rem 0;
+    padding: .5rem 0;
+} */
+
+/* Transparent default */
+.navbar {
+    background-color: transparent;
+    transition: all 0.3s ease;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
+
+/* Glassmorphism on scroll or mobile toggle */
+.navbar.navbar-scrolled {
+    background-color: rgba(255, 255, 255, 0.062) !important; /* light blur bg */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
 
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 700;
+    width: 80px;
+    height: 80px;
+}
+
+.navbar-brand img {
+    width: 79px;
+    height: 79px;
+    border-radius: 50%;
 }
 
 .nav-link {
-    font-weight: 500;
+    font-weight: 800;
     transition: color 0.3s ease;
     padding: 0.5rem 1rem !important;
     color: var(--dark-color) !important;
 }
 
 .nav-link:hover {
-    color: var(--secondary-color) !important;
+    color: black;
 }
 
 .nav-link.active {
@@ -60,17 +87,9 @@ body {
     border-radius: 2px;
 }
 
-/* .logo-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-} */
-
 
 /* Hero Section */
-.hero-section {
-    /* background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); */
+/* .hero-section {
     background-color: var(--primary-color) !important;
     min-height: 100vh;
     display: flex;
@@ -103,7 +122,8 @@ body {
 .hero-image img {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
+} */
+
 
 /* Section Titles */
 .section-title {
@@ -379,15 +399,8 @@ footer {
 
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .hero-section {
-        text-align: center;
-        padding: 2rem 0;
-    }
+@media (max-width: 770px) {
 
-    .hero-content h1 {
-        font-size: 2rem;
-    }
 
     .section-title {
         font-size: 2rem;
@@ -403,12 +416,33 @@ footer {
         right: 20px;
     }
 
-     /* .insect {
-        padding: 3rem 3rem 12rem 3rem;
-    } */
+    .cta-button {
+        padding: .5rem 1rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-text {
+        padding: 1rem 2rem;
+    }
 }
 
 @media (max-width: 576px) {
+
+    .hero-content {
+        margin-top: 5rem;
+    }
+
     .hero-buttons .btn {
         display: block;
         width: 100%;
@@ -426,6 +460,17 @@ footer {
 
     .insect {
         margin-bottom: -9rem;
+    }
+
+    .navbar {
+        backdrop-filter: blur(5px);
+    }
+
+    .nav-link {
+        color: var(--dark-color) !important;
+    }
+    .nav-link:hover {
+        color: var(--primary-color) !important;
     }
 
 }

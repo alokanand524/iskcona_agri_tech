@@ -208,3 +208,32 @@ document.addEventListener("DOMContentLoaded", function () {
     setupPagination();
     showPage(1); // Show first page initially
 });
+
+
+// /\//\\/\\/\//\\/\/\/\/\/\//\/\/\/\/\/\/\/\/\\//\/\\\/\/\/\
+
+  const navbar = document.querySelector('.navbar');
+  const collapse = document.getElementById('navbarNav');
+  const toggler = document.querySelector('.navbar-toggler');
+
+  function updateNavbarStyle() {
+    if (window.scrollY > 50 || collapse.classList.contains('show')) {
+      navbar.classList.add('navbar-scrolled');
+    } else {
+      navbar.classList.remove('navbar-scrolled');
+    }
+  }
+
+  // Scroll event
+  window.addEventListener('scroll', updateNavbarStyle);
+
+  // Collapse toggle (mobile menu)
+  toggler.addEventListener('click', () => {
+    setTimeout(updateNavbarStyle, 10); // slight delay for transition
+  });
+
+  collapse.addEventListener('shown.bs.collapse', updateNavbarStyle);
+  collapse.addEventListener('hidden.bs.collapse', updateNavbarStyle);
+
+  // Initial check
+  updateNavbarStyle();

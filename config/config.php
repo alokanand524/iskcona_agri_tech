@@ -4,7 +4,7 @@ require_once __DIR__ . '/database.php';
 session_start();
 
 // Site configuration
-define('SITE_URL', 'http://localhost/MyProject/Plant/');
+define('SITE_URL', 'http://localhost/MyProject/iskcona_agri_tech/');
 define('ADMIN_URL', SITE_URL . 'admin/');
 define('UPLOAD_PATH', 'uploads/');
 
