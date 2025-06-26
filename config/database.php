@@ -1,17 +1,18 @@
 <?php
+// config/database.php
 class Database {
     private $host = 'localhost';
-    private $port = '5432'; 
+    private $port = '3306'; 
     private $db_name = 'crop_medicine_db';
-    private $username = 'postgres';
-    private $password = '8266';
+    private $username = 'root';
+    private $password = '';
     private $connection;
 
     public function connect() {
         $this->connection = null;
         try {
             $this->connection = new PDO(
-                "pgsql:host=" . $this->host . ";dbname=" . $this->db_name,
+                "mysql:host=" . $this->host . ";dbname=" . $this->db_name,
                 $this->username,
                 $this->password
             );
@@ -22,6 +23,3 @@ class Database {
         return $this->connection;
     }
 }
-
-
-?>
