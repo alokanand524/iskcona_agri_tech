@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
     <title>ISKCONA AGRI TECH - to cure infected plants</title>
 
     <!-- Bootstrap CSS -->
@@ -24,7 +25,7 @@
             overflow: hidden;
             border-bottom-left-radius: 0%;
             border-bottom-right-radius: 0%;
-            margin-top: 6rem;
+            margin-top: 3rem;
         }
 
         .hero-content {
@@ -147,6 +148,10 @@
             .hero-text {
                 padding: 1rem 2rem;
             }
+
+            .hero-section{
+                margin-top: 1rem;
+            }
         }
 
         @media (max-width: 770px){
@@ -169,6 +174,8 @@
             .hero-text {
                 padding: 1rem 2rem;
             }
+
+
         }
     </style>
 </head>
