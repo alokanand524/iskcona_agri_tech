@@ -55,11 +55,11 @@ body {
     font-weight: 800;
     transition: color 0.3s ease;
     padding: 0.5rem 1rem !important;
-    color: var(--dark-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .nav-link:hover {
-    color: black;
+    color: rgb(85, 176, 51);
 }
 
 .nav-link.active {
@@ -79,44 +79,6 @@ body {
     /* background-color: var(--secondary-color); */
     border-radius: 2px;
 }
-
-
-/* Hero Section */
-/* .hero-section {
-    background-color: var(--primary-color) !important;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    border-bottom-left-radius: 20%;
-    border-bottom-right-radius: 20%;
-}
-
-.hero-content h1 {
-    color: var(--light-color);
-    margin-bottom: 1.5rem;
-}
-
-.hero-content p {
-    color: var(--light-color) !important;
-}
-
-.hero-buttons .btn {
-    padding: 12px 30px;
-    font-weight: 600;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-}
-
-.hero-buttons .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.hero-image img {
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-} */
-
 
 /* Section Titles */
 .section-title {

@@ -58,24 +58,6 @@ $(document).ready(function () {
         animateOnScroll();
     });
 
-    // Contact form submission
-    $('.contact-form').on('submit', function (e) {
-        e.preventDefault();
-
-        // Get form data
-        var name = $(this).find('input[type="text"]').val();
-        var email = $(this).find('input[type="email"]').val();
-        var message = $(this).find('textarea').val();
-
-        // Simple validation
-        if (name && email && message) {
-            alert('Thank you for your message! We will get back to you soon.');
-            $(this)[0].reset();
-        } else {
-            alert('Please fill in all fields.');
-        }
-    });
-
     // Parallax effect for hero section
     $(window).scroll(function () {
         var scrolled = $(this).scrollTop();
@@ -237,3 +219,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initial check
   updateNavbarStyle();
+
+
+// /\//\\/\\/\//\\/\/\/\/\/\//\/\/\/\/\/\/\/\/\\//\/\\\/\/\/\
+// bulk delete
+// document.getElementById('checkAll').addEventListener('change', function () {
+//     const checkboxes = document.querySelectorAll('input[name="selected_ids[]"]');
+//     checkboxes.forEach(cb => cb.checked = this.checked);
+// });
+
+// view message and mark as read
+document.querySelectorAll('.view-btn').forEach(button => {
+    button.addEventListener('click', function () {
+        const messageId = this.getAttribute('data-id');
+        fetch('mark_read.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'id=' + messageId
+        });
+    });
+});

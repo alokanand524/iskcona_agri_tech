@@ -1,28 +1,28 @@
 <?php
-require_once __DIR__ . '/../config/config.php';
+    require_once __DIR__ . '/../config/config.php';
 
-requireLogin();
+    requireLogin();
 
-// Get statistics
-$stats = [];
+    // Get statistics
+    $stats = [];
 
-// Total products
-$stmt = $db->query("SELECT COUNT(*) as count FROM products WHERE is_active = TRUE");
-$stats['total_products'] = $stmt->fetch()['count'];
+    // Total products
+    $stmt = $db->query("SELECT COUNT(*) as count FROM products WHERE is_active = TRUE");
+    $stats['total_products'] = $stmt->fetch()['count'];
 
-// Products by category
-$stmt = $db->query("SELECT category, COUNT(*) as count FROM products WHERE is_active = TRUE GROUP BY category");
-$productsByCategory = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Products by category
+    $stmt = $db->query("SELECT category, COUNT(*) as count FROM products WHERE is_active = TRUE GROUP BY category");
+    $productsByCategory = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Unread messages
-$stmt = $db->query("SELECT COUNT(*) as count FROM contact_messages WHERE is_read = FALSE");
-$stats['unread_messages'] = $stmt->fetch()['count'];
+    // Unread messages
+    $stmt = $db->query("SELECT COUNT(*) as count FROM contact_messages WHERE is_read = FALSE");
+    $stats['unread_messages'] = $stmt->fetch()['count'];
 
-// Recent messages
-$stmt = $db->query("SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 5");
-$recentMessages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Recent messages
+    $stmt = $db->query("SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 5");
+    $recentMessages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-include 'includes/header.php';
+    include 'includes/header.php';
 ?>
 
 
@@ -154,7 +154,7 @@ include 'includes/header.php';
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Subject</th>
+                                                <th>message</th>
                                                 <th>Date</th>
                                                 <th>Status</th>
                                             </tr>
@@ -164,7 +164,7 @@ include 'includes/header.php';
                                                 <tr>
                                                     <td><?php echo htmlspecialchars($message['name']); ?></td>
                                                     <td><?php echo htmlspecialchars($message['email']); ?></td>
-                                                    <td><?php echo htmlspecialchars(substr($message['subject'], 0, 30)) . '...'; ?>
+                                                    <td><?php echo htmlspecialchars(substr($message['message'], 0, 30)) . '...'; ?>
                                                     </td>
                                                     <td><?php echo date('M j, Y', strtotime($message['created_at'])); ?></td>
                                                     <td>
@@ -211,5 +211,3 @@ include 'includes/header.php';
         </main>
     </div>
 </div>
-
-<?php include 'includes/footer.php'; ?>

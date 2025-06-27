@@ -1,6 +1,14 @@
 <?php
-// admin/includes/sidebar.php
+// Ensure $db or $conn is initialized before using this
+require_once '../config/database.php';
+$db = new Database();
+$conn = $db->connect();
+
 $currentPage = basename($_SERVER['PHP_SELF']);
+
+$stmt = $conn->prepare("SELECT COUNT(*) as count FROM contact_messages WHERE is_read = 0");
+$stmt->execute();
+$unreadCount = $stmt->fetch()['count'] ?? 0;
 ?>
 <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
     <div class="position-sticky pt-3">
@@ -23,11 +31,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <li class="nav-item">
                 <a class="nav-link <?php echo $currentPage == 'messages.php' ? 'active' : ''; ?>" href="messages.php">
                     <i class="fas fa-envelope me-2"></i>Messages
-                    <?php
-                    $stmt = $db->query("SELECT COUNT(*) as count FROM contact_messages WHERE is_read = FALSE");
-                    $unreadCount = $stmt->fetch()['count'];
-                    if ($unreadCount > 0):
-                        ?>
+                    <?php if ($unreadCount > 0): ?>
                         <span class="badge bg-danger ms-2"><?php echo $unreadCount; ?></span>
                     <?php endif; ?>
                 </a>

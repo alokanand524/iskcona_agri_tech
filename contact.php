@@ -1,3 +1,40 @@
+<?php
+require_once 'config/database.php';
+
+$successMessage = "";
+$errorMessage = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name    = trim($_POST['name'] ?? '');
+    $email   = trim($_POST['email'] ?? '');
+    $message = trim($_POST['message'] ?? '');
+
+    if (!empty($name) && !empty($email) && !empty($message)) {
+        $db = new Database();
+        $conn = $db->connect();
+
+        $sql = "INSERT INTO contact_messages (name, email, message, is_read)
+                VALUES (:name, :email, :message, :is_read)";
+        $stmt = $conn->prepare($sql);
+
+        try {
+            $stmt->execute([
+                ':name'    => $name,
+                ':email'   => $email,
+                ':message' => $message,
+                ':is_read' => 0 // Default to unread
+            ]);
+            $successMessage = "✅ Message sent successfully!";
+        } catch (PDOException $e) {
+            $errorMessage = "❌ Failed to send message: " . $e->getMessage();
+        }
+    } else {
+        $errorMessage = "❗ Please fill in all fields.";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +64,10 @@
                     <p class="text-muted">Ready to start your natural healing journey? Contact us today.</p>
                 </div>
             </div>
+
             <div class="row g-4">
+
+                <!-- Contact information -->
                 <div class="col-lg-6">
                     <div class="contact-info slide-up">
                         <div class="contact-item mb-4">
@@ -54,24 +94,39 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Form -->
                 <div class="col-lg-6">
-                    <form class="contact-form slide-up">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-success w-100">Send Message</button>
-                    </form>
+
+                    <?php if (!empty($successMessage)) : ?>
+                        <div class="alert alert-success"><?php echo $successMessage; ?></div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($errorMessage)) : ?>
+                        <div class="alert alert-danger"><?php echo $errorMessage; ?></div>
+                    <?php endif; ?>
+
+                  <form class="contact-form slide-up" method="POST">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Send Message</button>
+                </form>
+
                 </div>
+
             </div>
+
         </div>
     </section>
 
+    <!-- find us on map -->
     <section class="container py-5">
         <div class="row">
             <div class="col-12 text-center mb-4">
