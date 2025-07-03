@@ -1,6 +1,6 @@
 <?php
 // admin/login.php
-require_once '../config/config.php';
+require_once '../config/config.php'; // DB connection + session_start assumed
 
 $error = '';
 
@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute([$username, $username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Direct password comparison (NO encryption)
-        if ($user && $password === $user['password']) {
+        if ($user && password_verify($password, $user['password'])) {
+            // ✅ Correct password
             $_SESSION['admin_id'] = $user['id'];
             $_SESSION['admin_username'] = $user['username'];
 
-            // Update last login
+            // Update last_login timestamp
             $updateStmt = $db->prepare("UPDATE admin_users SET last_login = NOW() WHERE id = ?");
             $updateStmt->execute([$user['id']]);
 
@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = 'Please fill in all fields';
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

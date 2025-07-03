@@ -1,5 +1,19 @@
 <?php
-session_start();
+    session_start();
+
+    // Block page for non-logged-in users
+    if (!isset($_SESSION['admin_username'])) {
+        header("Location: ../admin/login.php");
+        exit;
+    }
+
+    // Prevent browser caching after logout
+    header("Cache-Control: no-store, no-cache, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+?>
+
+<?php
 require_once '../config/database.php';
 
 $db = new Database();

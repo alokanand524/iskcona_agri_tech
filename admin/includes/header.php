@@ -1,14 +1,15 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
-// Optional: Uncomment below to force login protection on all pages using this header
-// if (!isset($_SESSION['admin_username'])) {
-//     header("Location: ../login.php");
-//     exit;
-// }
+    // login protection
+    if (!isset($_SESSION['admin_username'])) {
+        header("Location: ../admin/login.php");
+        exit;
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,19 +112,84 @@ if (session_status() === PHP_SESSION_NONE) {
                         <?php echo isset($_SESSION['admin_username']) ? htmlspecialchars($_SESSION['admin_username']) : 'Admin'; ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="profile.php"><i class="fas fa-user me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i
+                                    class="fas fa-user me-2"></i>My Profile</a></li>
                         <li><a class="dropdown-item" href="settings.php"><i class="fas fa-cog me-2"></i>Settings</a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="logout.php"><i
+                        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i
                                     class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">My Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="updateProfileForm" method="POST" action="update_profile.php">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" class="form-control" name="username"
+                                value="<?php echo htmlspecialchars($_SESSION['admin_username']); ?>" required>
+                        </div>
+                        <div class="mb-3 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="togglePasswordSection">
+                            <label class="form-check-label" for="togglePasswordSection">Change Password</label>
+                        </div>
+                        <div id="passwordFields" style="display: none;">
+                            <div class="mb-3">
+                                <label class="form-label">Old Password</label>
+                                <input type="password" class="form-control" name="old_password">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">New Password</label>
+                                <input type="password" class="form-control" name="new_password">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Are you sure you want to log out?</p>
+                    <a href="logout.php" class="btn btn-danger">Yes, Logout</a>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        document.getElementById('togglePasswordSection').addEventListener('change', function () {
+            document.getElementById('passwordFields').style.display = this.checked ? 'block' : 'none';
+        });
+    </script>
+
 </body>
 
 </html>

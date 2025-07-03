@@ -1,15 +1,32 @@
 <?php
-// Ensure $db or $conn is initialized before using this
-require_once '../config/database.php';
-$db = new Database();
-$conn = $db->connect();
+    session_start();
 
-$currentPage = basename($_SERVER['PHP_SELF']);
+    // Block page for non-logged-in users
+    if (!isset($_SESSION['admin_username'])) {
+        header("Location: ../admin/login.php");
+        exit;
+    }
 
-$stmt = $conn->prepare("SELECT COUNT(*) as count FROM contact_messages WHERE is_read = 0");
-$stmt->execute();
-$unreadCount = $stmt->fetch()['count'] ?? 0;
+    // Prevent browser caching after logout
+    header("Cache-Control: no-store, no-cache, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
 ?>
+
+
+<?php
+    // Ensure $db or $conn is initialized before using this
+    require_once '../config/database.php';
+    $db = new Database();
+    $conn = $db->connect();
+
+    $currentPage = basename($_SERVER['PHP_SELF']);
+
+    $stmt = $conn->prepare("SELECT COUNT(*) as count FROM contact_messages WHERE is_read = 0");
+    $stmt->execute();
+    $unreadCount = $stmt->fetch()['count'] ?? 0;
+?>
+
 <div class="col-md-3 col-lg-2 d-md-block sidebar collapse">
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
@@ -18,11 +35,11 @@ $unreadCount = $stmt->fetch()['count'] ?? 0;
                     <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link <?php echo $currentPage == 'pages.php' ? 'active' : ''; ?>" href="pages.php">
                     <i class="fas fa-file-alt me-2"></i>Pages
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link <?php echo $currentPage == 'products.php' ? 'active' : ''; ?>" href="products.php">
                     <i class="fas fa-seedling me-2"></i>Products

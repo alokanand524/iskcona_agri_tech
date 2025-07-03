@@ -5,7 +5,7 @@ class Database {
     private $port = '3306'; 
     private $db_name = 'crop_medicine_db';
     private $username = 'root';
-    private $password = '';
+    private $password = '8266@Alok';
     private $connection;
 
     public function connect() {

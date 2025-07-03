@@ -1,4 +1,20 @@
 <?php
+    session_start();
+
+    // Block page for non-logged-in users
+    if (!isset($_SESSION['admin_username'])) {
+        header("Location: ../admin/login.php");
+        exit;
+    }
+
+    // Prevent browser caching after logout
+    header("Cache-Control: no-store, no-cache, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+?>
+
+
+<?php
     require_once __DIR__ . '/../config/config.php';
 
     requireLogin();
@@ -24,7 +40,6 @@
 
     include 'includes/header.php';
 ?>
-
 
 <div class="container-fluid">
     <div class="row">
@@ -194,9 +209,9 @@
                                 <a href="products.php?action=add" class="btn btn-success">
                                     <i class="fas fa-plus me-2"></i>Add New Product
                                 </a>
-                                <a href="pages.php" class="btn btn-info">
+                                <!-- <a href="pages.php" class="btn btn-info">
                                     <i class="fas fa-edit me-2"></i>Edit Pages
-                                </a>
+                                </a> -->
                                 <a href="messages.php" class="btn btn-warning">
                                     <i class="fas fa-envelope me-2"></i>View Messages
                                 </a>
@@ -211,3 +226,5 @@
         </main>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
