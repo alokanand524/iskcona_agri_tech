@@ -84,6 +84,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .btn-login:hover {
             background: linear-gradient(135deg, #1B5E20, #388E3C);
         }
+
+        .navbar-brand {
+            width: 80px;
+            height: 80px;
+            margin-left: 2rem;
+            margin-top: -.5rem;
+        }
+
+        .navbar-brand img {
+            background-color: transparent;
+            width: 79px;
+            height: 79px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -93,9 +108,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col-md-6 col-lg-4">
                 <div class="login-card">
                     <div class="login-header">
-                        <i class="fas fa-leaf fa-3x mb-3"></i>
+                        <a class="navbar-brand" href="../config/database.php">
+                            <img src="../src/iskcona_logo.png" alt="ISKCONA AGRI TECH Logo">
+                        </a>
                         <h3>Admin Panel</h3>
-                        <p class="mb-0">Crop Medicine Solutions</p>
+                        <p class="mb-0">ISKCONA AGRI TECH</p>
                     </div>
                     <div class="login-body">
                         <?php if ($error): ?>

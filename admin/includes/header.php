@@ -96,6 +96,18 @@
             border-radius: 50%;
             object-fit: cover;
         }
+
+        @media screen and (max-width: 566px) {
+            .navbar-brand {
+                width: 60px;
+                height: 60px;
+            }
+
+            .navbar-brand img {
+                width: 59px;
+                height: 59px;
+            }
+        }
     </style>
 </head>
 
