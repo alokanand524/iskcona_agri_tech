@@ -27,157 +27,159 @@ try {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fungicide - ISKCONA AGRI TECH</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="src/favicon_io/favicon.ico" type="image/x-icon">
     <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body>
 
-<?php include 'navbar.php'; ?>
+    <?php include 'navbar.php'; ?>
 
-<section id="plants" class="py-5 bg-light contact">
-    <div class="container">
-        <div class="row plant-margin position-relative bg-glass-wrapper">
-            <div class="position-absolute bg-blur-image"></div>
-            <div class="col-lg-8 mx-auto text-center insect position-relative glass-effect">
-                <h2 class="section-title">Fungicide for Plants</h2>
-                <p class="text-muted">Explore powerful fungicides that protect your crops from fungal diseases.</p>
+    <section id="plants" class="py-5 bg-light contact">
+        <div class="container">
+            <div class="row plant-margin position-relative bg-glass-wrapper">
+                <div class="position-absolute bg-blur-image"></div>
+                <div class="col-lg-8 mx-auto text-center insect position-relative glass-effect">
+                    <h2 class="section-title">Fungicide for Plants</h2>
+                    <p class="text-muted">Explore powerful fungicides that protect your crops from fungal diseases.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="col-lg-8 mx-auto text-center mb-3 mt-5">
-            <h2 class="section-title2">Products -</h2>
-        </div>
+            <div class="col-lg-8 mx-auto text-center mb-3 mt-5">
+                <h2 class="section-title2">Products -</h2>
+            </div>
 
-        <div class="row g-4">
-            <div id="product-container" class="row g-4">
-                <?php if (empty($products)): ?>
-                    <div class="col-12 text-center">
-                        <p class="text-muted">No fungicide products available at the moment.</p>
-                    </div>
-                <?php else: ?>
-                    <?php foreach ($products as $product): ?>
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <div class="plant-card slide-up paginated-item"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#productModal"
-                                 data-id="<?php echo $product['id']; ?>"
-                                 data-name="<?php echo htmlspecialchars($product['name']); ?>"
-                                 data-description="<?php echo htmlspecialchars($product['description']); ?>"
-                                 data-image="/iskcona_agri_tech/uploads/<?php echo htmlspecialchars($product['image_url']); ?>">
-                                <img src="/iskcona_agri_tech/uploads/<?php echo htmlspecialchars($product['image_url']); ?>"
-                                     alt="<?php echo htmlspecialchars($product['name']); ?>"
-                                     class="card-img-top"
-                                     style="height: 220px; object-fit: cover; border-radius: 10px;">
-                            </div>
+            <div class="row g-4">
+                <div id="product-container" class="row g-4">
+                    <?php if (empty($products)): ?>
+                        <div class="col-12 text-center">
+                            <p class="text-muted">No fungicide products available at the moment.</p>
                         </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center mt-4">
-            <nav>
-                <ul class="pagination" id="pagination">
-                    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                        <li class="page-item <?= $i === $page ? 'active' : '' ?>">
-                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                        </li>
-                    <?php endfor; ?>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</section>
-
-<!-- Modal for Product Detail -->
-<div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content p-4">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalProductName">Product Name</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body row">
-                <div class="col-md-5 text-center">
-                    <img id="modalProductImage" src="" alt="Product Image" class="img-fluid rounded">
+                    <?php else: ?>
+                        <?php foreach ($products as $product): ?>
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <div class="plant-card slide-up paginated-item" data-bs-toggle="modal"
+                                    data-bs-target="#productModal" data-id="<?php echo $product['id']; ?>"
+                                    data-name="<?php echo htmlspecialchars($product['name']); ?>"
+                                    data-description="<?php echo htmlspecialchars($product['description']); ?>"
+                                    data-image="/iskcona_agri_tech/uploads/<?php echo htmlspecialchars($product['image_url']); ?>">
+                                    <img src="/iskcona_agri_tech/uploads/<?php echo htmlspecialchars($product['image_url']); ?>"
+                                        alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top"
+                                        style="height: 220px; object-fit: cover; border-radius: 10px;">
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
-                <div class="col-md-7">
-                    <p><strong>Description:</strong><br><span id="modalProductDescription"></span></p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="ingredientTable">
-                            <thead>
-                                <tr>
-                                    <th>CROP</th>
-                                    <th>A.I.</th>
-                                    <th>Dosage</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Rows filled by JS -->
-                            </tbody>
-                        </table>
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                <nav>
+                    <ul class="pagination" id="pagination">
+                        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                            <li class="page-item <?= $i === $page ? 'active' : '' ?>">
+                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                            </li>
+                        <?php endfor; ?>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Product Detail -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalProductName">Product Name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-md-5 text-center">
+                        <img id="modalProductImage" src="" alt="Product Image" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-7">
+                        <p><strong>Description:</strong><br><span id="modalProductDescription"></span></p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="ingredientTable">
+                                <thead>
+                                    <tr>
+                                        <th>CROP</th>
+                                        <th>A.I.</th>
+                                        <th>Dosage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Rows filled by JS -->
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<?php include 'footer.php'; ?>
+    <?php include 'footer.php'; ?>
 
-<button id="scrollTopBtn" class="scroll-top-btn">
-    <i class="fas fa-arrow-up"></i>
-</button>
+    <button id="scrollTopBtn" class="scroll-top-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/script.js"></script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const productCards = document.querySelectorAll('.plant-card');
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const productCards = document.querySelectorAll('.plant-card');
 
-    productCards.forEach(card => {
-        card.addEventListener('click', function () {
-            document.getElementById('modalProductName').textContent = card.getAttribute('data-name');
-            document.getElementById('modalProductDescription').textContent = card.getAttribute('data-description');
-            document.getElementById('modalProductImage').src = card.getAttribute('data-image');
+            productCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    document.getElementById('modalProductName').textContent = card.getAttribute('data-name');
+                    document.getElementById('modalProductDescription').textContent = card.getAttribute('data-description');
+                    document.getElementById('modalProductImage').src = card.getAttribute('data-image');
 
-            const productId = card.getAttribute('data-id');
+                    const productId = card.getAttribute('data-id');
 
-            const tbody = document.querySelector('#ingredientTable tbody');
-            tbody.innerHTML = '<tr><td colspan="3">Loading...</td></tr>';
+                    const tbody = document.querySelector('#ingredientTable tbody');
+                    tbody.innerHTML = '<tr><td colspan="3">Loading...</td></tr>';
 
-            fetch('get_ingredients.php?product_id=' + productId)
-                .then(res => res.json())
-                .then(data => {
-                    tbody.innerHTML = '';
-                    if (data.length > 0) {
-                        data.forEach(row => {
-                            const tr = document.createElement('tr');
-                            tr.innerHTML = `
+                    fetch('get_ingredients.php?product_id=' + productId)
+                        .then(res => res.json())
+                        .then(data => {
+                            tbody.innerHTML = '';
+                            if (data.length > 0) {
+                                data.forEach(row => {
+                                    const tr = document.createElement('tr');
+                                    tr.innerHTML = `
                                 <td>${row.crop}</td>
                                 <td>${row.active_ingredient}</td>
                                 <td>${row.dosage}</td>
                             `;
-                            tbody.appendChild(tr);
+                                    tbody.appendChild(tr);
+                                });
+                            } else {
+                                tbody.innerHTML = '<tr><td colspan="3" class="text-muted">No ingredients found.</td></tr>';
+                            }
+                        })
+                        .catch(() => {
+                            tbody.innerHTML = '<tr><td colspan="3" class="text-danger">Failed to load ingredients.</td></tr>';
                         });
-                    } else {
-                        tbody.innerHTML = '<tr><td colspan="3" class="text-muted">No ingredients found.</td></tr>';
-                    }
-                })
-                .catch(() => {
-                    tbody.innerHTML = '<tr><td colspan="3" class="text-danger">Failed to load ingredients.</td></tr>';
                 });
+            });
         });
-    });
-});
-</script>
+    </script>
 
 </body>
+
 </html>

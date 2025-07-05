@@ -1,13 +1,13 @@
 <?php
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-    // login protection
-    if (!isset($_SESSION['admin_username'])) {
-        header("Location: ../admin/login.php");
-        exit;
-    }
+// login protection
+if (!isset($_SESSION['admin_username'])) {
+    header("Location: ../admin/login.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +97,52 @@
             object-fit: cover;
         }
 
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .custom-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            min-width: 180px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            display: none;
+            padding: 10px 0;
+            list-style: none;
+        }
+
+        .custom-menu.show {
+            display: block;
+        }
+
+        .custom-menu li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .custom-menu a.dropdown-item {
+            display: block;
+            padding: 10px 16px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .custom-menu a.dropdown-item:hover {
+            background-color: #f2f2f2;
+        }
+
+        .custom-menu hr.dropdown-divider {
+            margin: 5px 0;
+            border-color: #ddd;
+        }
+
+
         @media screen and (max-width: 566px) {
             .navbar-brand {
                 width: 60px;
@@ -107,6 +153,11 @@
                 width: 59px;
                 height: 59px;
             }
+
+            .dropdown-menu {
+                z-index: 9999 !important;
+            }
+
         }
     </style>
 </head>
@@ -118,12 +169,12 @@
                 <img src="../src/iskcona_logo.png" alt="ISKCONA AGRI TECH Logo">
             </a>
             <div class="navbar-nav ms-auto">
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                <div class="nav-item custom-dropdown">
+                    <a class="nav-link custom-toggle" href="#" onclick="toggleDropdown(event)">
                         <i class="fas fa-user me-1"></i>
                         <?php echo isset($_SESSION['admin_username']) ? htmlspecialchars($_SESSION['admin_username']) : 'Admin'; ?>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="custom-menu">
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i
                                     class="fas fa-user me-2"></i>My Profile</a></li>
                         <li><a class="dropdown-item" href="settings.php"><i class="fas fa-cog me-2"></i>Settings</a>
@@ -135,6 +186,7 @@
                                     class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
                     </ul>
                 </div>
+
             </div>
         </div>
     </nav>
@@ -201,6 +253,25 @@
             document.getElementById('passwordFields').style.display = this.checked ? 'block' : 'none';
         });
     </script>
+
+    <script>
+        function toggleDropdown(e) {
+            e.preventDefault();
+            const menu = e.target.closest('.custom-dropdown').querySelector('.custom-menu');
+            document.querySelectorAll('.custom-menu').forEach(el => {
+                if (el !== menu) el.classList.remove('show');
+            });
+            menu.classList.toggle('show');
+        }
+
+        // Hide dropdown on outside click
+        window.addEventListener('click', function (e) {
+            if (!e.target.closest('.custom-dropdown')) {
+                document.querySelectorAll('.custom-menu').forEach(menu => menu.classList.remove('show'));
+            }
+        });
+    </script>
+
 
 </body>
 

@@ -41,6 +41,7 @@
     include 'includes/header.php';
 ?>
 
+
 <div class="container-fluid">
     <div class="row">
         <?php include 'includes/sidebar.php'; ?>
@@ -59,7 +60,7 @@
             </div>
 
             <!-- Statistics Cards -->
-            <div class="row mb-4">
+            <div class="row mb-4">                
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">

@@ -424,8 +424,19 @@ footer {
     .nav-link {
         color: var(--dark-color) !important;
     }
+
     .nav-link:hover {
         color: var(--primary-color) !important;
+    }
+
+    .navbar-brand {
+        width: 67px;
+        height: 67px;
+    }
+
+    .navbar-brand img {
+        width: 65px;
+        height: 65px;
     }
 
 }

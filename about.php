@@ -13,16 +13,17 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-
+    <!-- Favicon -->
+    <link rel="icon" href="src/favicon_io/favicon.ico" type="image/x-icon">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
 
-   <!-- Navigation -->
-   <?php include 'navbar.php'; ?>
-  
+    <!-- Navigation -->
+    <?php include 'navbar.php'; ?>
+
 
     <!-- About Section -->
     <section id="about" class="py-5 bg-light contact">
@@ -76,7 +77,8 @@
             </div>
             <div class="col-lg-10 mx-auto">
                 <p class="fs-5 text-justify">
-                    At <strong class="strong">ISKCONA AGRI TECH PVT. LTD.</strong>, we are more than just a company — we are passionate
+                    At <strong class="strong">ISKCONA AGRI TECH PVT. LTD.</strong>, we are more than just a company — we
+                    are passionate
                     cultivators of sustainable farming practices. Founded with the mission to support India’s
                     agricultural backbone, we specialize in providing high-quality crop medicine solutions such as
                     <strong>insecticides, pesticides, and herbicides</strong>, tailored to the diverse needs of modern
@@ -90,7 +92,8 @@
                     healthy, resilient crops.
                 </p>
                 <p class="fs-5 text-justify">
-                    Rooted in ethical values and scientific innovation, <strong class="strong">ISKCONA AGRI TECH PVT. LTD.</strong> is built by a team
+                    Rooted in ethical values and scientific innovation, <strong class="strong">ISKCONA AGRI TECH PVT.
+                        LTD.</strong> is built by a team
                     of agronomists, researchers, and passionate professionals who understand that agriculture is not
                     just a livelihood — it's a way of life. With deep respect for the soil, the crop, and the community,
                     we strive to deliver <strong>solutions that are effective, safe, and sustainable</strong>.
@@ -104,7 +107,8 @@
             </div>
             <div class="col-lg-10 mx-auto">
                 <p class="fs-5 text-justify">
-                    Our vision at <strong class="strong">ISKCONA AGRI TECH PVT. LTD.</strong> is to <strong>redefine agriculture
+                    Our vision at <strong class="strong">ISKCONA AGRI TECH PVT. LTD.</strong> is to <strong>redefine
+                        agriculture
                         through science, sustainability, and service</strong>. We aim to become a trusted partner for
                     every farmer — guiding them with cutting-edge solutions and compassionate mentorship.
                 </p>
@@ -128,8 +132,8 @@
     </section>
 
 
-   <!-- Footer -->
-   <?php include 'footer.php'; ?>
+    <!-- Footer -->
+    <?php include 'footer.php'; ?>
 
     <!-- Scroll to Top Button -->
     <button id="scrollTopBtn" class="scroll-top-btn">
