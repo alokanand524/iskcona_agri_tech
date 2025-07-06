@@ -269,7 +269,7 @@
                         <div class="service-icon">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <h4>Education</h4>
+                        <h4>Workshops</h4>
                         <p>Workshops and courses on plant medicine, herbalism, and natural healing practices.</p>
                         <a href="#" class="btn btn-outline-success btn-sm">Learn More</a>
                     </div>

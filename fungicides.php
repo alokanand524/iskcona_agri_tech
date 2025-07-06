@@ -37,6 +37,68 @@ try {
     <!-- Favicon -->
     <link rel="icon" href="src/favicon_io/favicon.ico" type="image/x-icon">
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .bg-glass-wrapper {
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            margin-top: -2rem;
+        }
+
+        .bg-blur-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-color: blue; */
+            background-image: url('src/fungos_nas_plantas.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(2px);
+            opacity: 0.6;
+            z-index: 0;
+            border-bottom-left-radius: 60%;
+            border-bottom-right-radius: 100%;
+        }
+
+        .insect {
+            position: relative;
+            padding: 3rem 3rem 12rem 3rem;
+            border-bottom-left-radius: 60%;
+            border-bottom-right-radius: 100%;
+            width: 100%;
+            text-align: center;
+            z-index: 1;
+            /* must be above background */
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #333;
+        }
+
+        .text-muted {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        @media screen and (max-width: 567px) {
+            .bg-glass-wrapper {
+                min-height: 212px;
+                margin-top: -3rem;
+            }
+
+            .insect {
+                padding: 0rem 1rem 1rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
@@ -45,9 +107,16 @@ try {
 
     <section id="plants" class="py-5 bg-light contact">
         <div class="container">
-            <div class="row plant-margin position-relative bg-glass-wrapper">
+            <!-- <div class="row plant-margin position-relative bg-glass-wrapper">
                 <div class="position-absolute bg-blur-image"></div>
                 <div class="col-lg-8 mx-auto text-center insect position-relative glass-effect">
+                    <h2 class="section-title">Fungicide for Plants</h2>
+                    <p class="text-muted">Explore powerful fungicides that protect your crops from fungal diseases.</p>
+                </div>
+            </div> -->
+            <div class="bg-glass-wrapper">
+                <div class="bg-blur-image"></div>
+                <div class="insect">
                     <h2 class="section-title">Fungicide for Plants</h2>
                     <p class="text-muted">Explore powerful fungicides that protect your crops from fungal diseases.</p>
                 </div>
@@ -70,8 +139,8 @@ try {
                                     data-bs-target="#productModal" data-id="<?php echo $product['id']; ?>"
                                     data-name="<?php echo htmlspecialchars($product['name']); ?>"
                                     data-description="<?php echo htmlspecialchars($product['description']); ?>"
-                                    data-image="/iskcona_agri_tech/uploads/<?php echo htmlspecialchars($product['image_url']); ?>">
-                                    <img src="/iskcona_agri_tech/uploads/<?php echo htmlspecialchars($product['image_url']); ?>"
+                                    data-image="./uploads/<?php echo htmlspecialchars($product['image_url']); ?>">
+                                    <img src="./uploads/<?php echo htmlspecialchars($product['image_url']); ?>"
                                         alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top"
                                         style="height: 220px; object-fit: cover; border-radius: 10px;">
                                 </div>

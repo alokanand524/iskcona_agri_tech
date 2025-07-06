@@ -1,6 +1,6 @@
 <?php
 // admin/login.php
-require_once '../config/config.php'; // DB connection + session_start assumed
+require_once '../config/config.php';
 
 $error = '';
 
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
-            // ✅ Correct password
+            
             $_SESSION['admin_id'] = $user['id'];
             $_SESSION['admin_username'] = $user['username'];
 
