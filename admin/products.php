@@ -47,11 +47,12 @@ function addProduct($db)
         }
 
         // Insert product
-        $stmt = $db->prepare("INSERT INTO products (name, category, description, image_url, is_active) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO products (name, category, description, use_guide, image_url, is_active) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $_POST['name'],
             $_POST['category'],
             $_POST['description'],
+            $_POST['use_guide'],
             $image_url,
             isset($_POST['is_active']) ? 1 : 0
         ]);
@@ -98,11 +99,12 @@ function updateProduct($db, $id)
         }
 
         // Update product
-        $stmt = $db->prepare("UPDATE products SET name=?, category=?, description=?, image_url=?, is_active=? WHERE id=?");
+        $stmt = $db->prepare("UPDATE products SET name=?, category=?, description=?, use_guide=?, image_url=?, is_active=? WHERE id=?");
         $stmt->execute([
             $_POST['name'],
             $_POST['category'],
             $_POST['description'],
+            $_POST['use_guide'],
             $image_url,
             isset($_POST['is_active']) ? 1 : 0,
             $id
@@ -519,6 +521,13 @@ if ($action == 'edit' && $id > 0) {
                                             <label for="description" class="form-label">Description</label>
                                             <textarea class="form-control" id="description" name="description"
                                                 rows="3"><?php echo $action == 'edit' ? htmlspecialchars($product['description']) : ''; ?></textarea>
+                                        </div>
+
+                                        <!-- Product use guide -->
+                                        <div class="mb-3">
+                                            <label for="use_guide" class="form-label">Product Use Guide</label>
+                                            <textarea class="form-control" id="use_guide" name="use_guide"
+                                                rows="3"><?php echo $action == 'edit' ? htmlspecialchars($product['use_guide']) : ''; ?></textarea>
                                         </div>
 
                                         <!-- Placeholder for Ingredients Section (Step 2) -->

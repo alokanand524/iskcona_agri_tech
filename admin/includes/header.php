@@ -25,6 +25,7 @@ if (!isset($_SESSION['admin_username'])) {
         .sidebar {
             min-height: 100vh;
             background: linear-gradient(180deg, #2E7D32, #4CAF50);
+            z-index: 9999;
         }
 
         .sidebar .nav-link {
@@ -41,6 +42,10 @@ if (!isset($_SESSION['admin_username'])) {
             color: white;
         }
 
+        .admin-navbar{
+            margin-top:-1px;
+            z-index: 9999;
+        }
         .navbar-brand {
             font-weight: bold;
         }
@@ -163,7 +168,7 @@ if (!isset($_SESSION['admin_username'])) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark position-fixed w-100 admin-navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="../config/database.php">
                 <img src="../src/iskcona_logo.png" alt="ISKCONA AGRI TECH Logo">

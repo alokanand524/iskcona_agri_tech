@@ -139,6 +139,7 @@ try {
                                     data-bs-target="#productModal" data-id="<?php echo $product['id']; ?>"
                                     data-name="<?php echo htmlspecialchars($product['name']); ?>"
                                     data-description="<?php echo htmlspecialchars($product['description']); ?>"
+                                    data-use-guide="<?php echo htmlspecialchars($product['use_guide']); ?>"
                                     data-image="./uploads/<?php echo htmlspecialchars($product['image_url']); ?>">
                                     <img src="./uploads/<?php echo htmlspecialchars($product['image_url']); ?>"
                                         alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top"
@@ -178,6 +179,7 @@ try {
                     </div>
                     <div class="col-md-7">
                         <p><strong>Description:</strong><br><span id="modalProductDescription"></span></p>
+                        <p><strong>How to use:</strong><br><span id="modalProductUseGuide"></span></p>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="ingredientTable">
                                 <thead>
@@ -216,6 +218,7 @@ try {
                 card.addEventListener('click', function () {
                     document.getElementById('modalProductName').textContent = card.getAttribute('data-name');
                     document.getElementById('modalProductDescription').textContent = card.getAttribute('data-description');
+                    document.getElementById('modalProductUseGuide').textContent = card.getAttribute('data-use-guide');
                     document.getElementById('modalProductImage').src = card.getAttribute('data-image');
 
                     const productId = card.getAttribute('data-id');

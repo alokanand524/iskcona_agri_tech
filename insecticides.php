@@ -52,7 +52,7 @@ try {
             width: 100%;
             height: 100%;
             /* background-color: blue; */
-            background-image: url('src/insecticide_bg.jpg');
+            background-image: url('./src/insecticide_bg.jpg');
             background-size: cover;
             background-position: center;
             filter: blur(2px);
@@ -73,7 +73,7 @@ try {
             /* must be above background */
         }
 
-       .section-title {
+        .section-title {
             font-size: 3rem;
             color: #333;
         }
@@ -81,6 +81,22 @@ try {
         .text-muted {
             color: #666;
             font-size: 1.2rem;
+        }
+
+        @media screen and (max-width: 567px) {
+            .bg-glass-wrapper {
+                min-height: 212px;
+                margin-top: -3rem;
+            }
+
+            .insect {
+                padding: 0rem 1rem 1rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
         }
     </style>
 </head>
@@ -123,6 +139,7 @@ try {
                                     data-bs-target="#productModal" data-id="<?php echo $product['id']; ?>"
                                     data-name="<?php echo htmlspecialchars($product['name']); ?>"
                                     data-description="<?php echo htmlspecialchars($product['description']); ?>"
+                                    data-use-guide="<?php echo htmlspecialchars($product['use_guide']); ?>"
                                     data-image="./uploads/<?php echo htmlspecialchars($product['image_url']); ?>">
                                     <img src="./uploads/<?php echo htmlspecialchars($product['image_url']); ?>"
                                         alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top"
@@ -156,6 +173,7 @@ try {
                     </div>
                     <div class="col-md-7">
                         <p><strong>Description:</strong><br><span id="modalProductDescription"></span></p>
+                        <p><strong>How to use:</strong><br><span id="modalProductUseGuide"></span></p>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="ingredientTable">
                                 <thead>
@@ -194,6 +212,7 @@ try {
                 card.addEventListener('click', function () {
                     document.getElementById('modalProductName').textContent = card.getAttribute('data-name');
                     document.getElementById('modalProductDescription').textContent = card.getAttribute('data-description');
+                    document.getElementById('modalProductUseGuide').textContent = card.getAttribute('data-use-guide');
                     document.getElementById('modalProductImage').src = card.getAttribute('data-image');
 
                     const productId = card.getAttribute('data-id');

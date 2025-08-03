@@ -37,7 +37,7 @@ try {
     <!-- Favicon -->
     <link rel="icon" href="src/favicon_io/favicon.ico" type="image/x-icon">
     <link href="css/style.css" rel="stylesheet">
-        <style>
+    <style>
         .bg-glass-wrapper {
             position: relative;
             overflow: hidden;
@@ -82,6 +82,22 @@ try {
             color: #666;
             font-size: 1.2rem;
         }
+
+        @media screen and (max-width: 567px) {
+            .bg-glass-wrapper {
+                min-height: 212px;
+                margin-top: -3rem;
+            }
+
+            .insect {
+                padding: 0rem 1rem 1rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+        }
     </style>
 </head>
 
@@ -124,6 +140,7 @@ try {
                                     data-bs-target="#productModal" data-id="<?php echo $product['id']; ?>"
                                     data-name="<?php echo htmlspecialchars($product['name']); ?>"
                                     data-description="<?php echo htmlspecialchars($product['description']); ?>"
+                                    data-use-guide="<?php echo htmlspecialchars($product['use_guide']); ?>"
                                     data-image="./uploads/<?php echo htmlspecialchars($product['image_url']); ?>">
                                     <img src="./uploads/<?php echo htmlspecialchars($product['image_url']); ?>"
                                         alt="<?php echo htmlspecialchars($product['name']); ?>" class="card-img-top"
@@ -163,6 +180,7 @@ try {
                     </div>
                     <div class="col-md-7">
                         <p><strong>Description:</strong><br><span id="modalProductDescription"></span></p>
+                        <p><strong>How to use:</strong><br><span id="modalProductUseGuide"></span></p>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="ingredientTable">
                                 <thead>
@@ -201,6 +219,7 @@ try {
                 card.addEventListener('click', function () {
                     document.getElementById('modalProductName').textContent = card.getAttribute('data-name');
                     document.getElementById('modalProductDescription').textContent = card.getAttribute('data-description');
+                    document.getElementById('modalProductUseGuide').textContent = card.getAttribute('data-use-guide');
                     document.getElementById('modalProductImage').src = card.getAttribute('data-image');
 
                     const productId = card.getAttribute('data-id');

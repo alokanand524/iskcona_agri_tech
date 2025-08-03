@@ -42,7 +42,7 @@
 ?>
 
 
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top:5rem">
     <div class="row">
         <?php include 'includes/sidebar.php'; ?>
 
@@ -53,7 +53,7 @@
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
                         <button type="button" class="btn btn-sm btn-outline-secondary">
-                            <i class="fas fa-calendar"></i> This Week
+                            <!-- <i class="fas fa-calendar"></i> This Week -->
                         </button>
                     </div>
                 </div>
@@ -215,9 +215,9 @@
                                 <a href="products.php?action=add" class="btn btn-success">
                                     <i class="fas fa-plus me-2"></i>Add New Product
                                 </a>
-                                <!-- <a href="pages.php" class="btn btn-info">
-                                    <i class="fas fa-edit me-2"></i>Edit Pages
-                                </a> -->
+                                <a href="blog-create.php" class="btn btn-info">
+                                    <i class="fas fa-globe me-2"></i>Create Blog
+                                </a>
                                 <a href="messages.php" class="btn btn-warning">
                                     <i class="fas fa-envelope me-2"></i>View Messages
                                 </a>

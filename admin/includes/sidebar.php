@@ -1,5 +1,7 @@
 <?php
-session_start();
+// header("Cache-Control: no-store, no-cache, must-revalidate");
+// header("Pragma: no-cache");
+// header("Expires: 0");
 
 // Block page for non-logged-in users
 if (!isset($_SESSION['admin_username'])) {
@@ -7,9 +9,7 @@ if (!isset($_SESSION['admin_username'])) {
     exit;
 }
 
-header("Cache-Control: no-store, no-cache, must-revalidate");
-header("Pragma: no-cache");
-header("Expires: 0");
+
 
 require_once '../config/database.php';
 $db = new Database();
@@ -74,6 +74,11 @@ $unreadCount = $stmt->fetch()['count'] ?? 0;
                     <?php if ($unreadCount > 0): ?>
                         <span class="badge bg-danger ms-1"><?php echo $unreadCount; ?></span>
                     <?php endif; ?>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white <?php echo $currentPage == 'blog-list.php' ? 'active' : ''; ?>" href="blog-list.php">
+                    <i class="fas fa-globe me-2"></i>Blog
                 </a>
             </li>
             <li class="nav-item">
